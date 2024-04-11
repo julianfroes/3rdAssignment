@@ -3,15 +3,18 @@ const rules ={
     "scissors": { "rock": 2, "scissors": 3, "paper": 1 },
     "paper": { "rock": 1, "scissors": 2, "paper": 3 }
 }
+const displayOptions =['●1   rock','●2   scissors','●3   paper']
 const options = ["rock","scissors","paper"]
+const numberOptions =['1','2','3']
 let round = 1
 let roundsWon = 0
 let roundsLost = 0
-let playerSelection = "rock"
-let computerSelection = "rock"
+let playerSelection = ""
+let computerSelection = ""
+let playerSelectionLowerCase =""
+let validInputFlag = true
 
 function playRound(){
-    const playerSelectionLowerCase = playerSelection.toLowerCase();
     function roundMessage(result){
         switch(result){
             case 1:
@@ -35,24 +38,50 @@ function playRound(){
                 return("paper");
         }
     }
-    function setWinnerOfTheRound(){
-        return rules[playerSelectionLowerCase][computerSelection]
+    function setWinnerOfTheRound(player, computer){
+        return rules[player][computer]
     }
-    playerSelection = window.prompt(`${'Write an option'}\n${ options.join("\n")}`);
+    do {
+        if(validInputFlag){
+            playerSelection = window.prompt(`${'Write an option'}\n${ displayOptions.join("\n")}`);
+        }
+        else{
+            playerSelection = window.prompt(`${'Write an option'}\n${'write a correct input'}\n${ displayOptions.join("\n")}`);
+        }
+        playerSelectionLowerCase = playerSelection.toLowerCase();
+        validInputFlag = options.includes(playerSelectionLowerCase)
+        if(numberOptions.includes(playerSelectionLowerCase)){
+            switch (playerSelectionLowerCase) {
+                case '1':
+                    playerSelectionLowerCase = "rock"
+                    break;
+                case '2':
+                    playerSelectionLowerCase = "scissors"
+                    break;
+                case '3':
+                    playerSelectionLowerCase = "paper"
+                    break;
+            }
+            validInputFlag = true;
+        }
+    } while (!validInputFlag);
+
     computerSelection = setComputerSelection();
-    console.log("you played: ",playerSelection);
+    console.log("you played: ",playerSelectionLowerCase);
     console.log("The evil wizard played: ",computerSelection);
-    console.log(`${playerSelection} vs ${computerSelection}`);
-    console.log(roundMessage(setWinnerOfTheRound()));
+    console.log(`${playerSelectionLowerCase} vs ${computerSelection}`);
+    console.log(roundMessage(setWinnerOfTheRound(playerSelectionLowerCase,computerSelection)));
     console.log(`Scores | You:${roundsWon} | Evil wizard:${roundsLost}|`);
     console.log(` Round:${round}`);
     round++;
 }
 
-console.log("Disclaimer any scissor, rock or papper were not harmed")
+console.log("Disclaimer any scissor, rock or paper were not harmed")
 do {
     playRound()
-} while (round <= 5 || roundsWon == 3 || roundsLost == 3);
+    if(roundsWon == 3 || roundsLost == 3)break
+} while (round <= 5);
+let finalMessage = "";
 if(roundsWon === 3 || roundsWon > roundsLost){
     console.log("you won yeiiiii");
 }
@@ -61,6 +90,7 @@ else if(roundsLost === 3 || roundsLost > roundsLost){
 }
 else{
     console.log("draw");
+    const playAgain = window.confirm()
 }
 
 
