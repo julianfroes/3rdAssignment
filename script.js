@@ -104,6 +104,7 @@ function playRound(){
 
 console.log("Disclaimer any scissor, rock or paper were not harmed")
 function startGame(){
+    window.alert(story);
     do {
         playRound()
         if(leaveGame) return;
@@ -134,7 +135,6 @@ function startGame(){
     console.log('Thank you for playing the game!')
 }
 
-window.alert(story);
 startGame();
 console.log("Is this the end?");
 console.log("Maybe if you refresh the page it won't be");
