@@ -91,12 +91,14 @@ function playRound(){
     } while (!validInputFlag);
 
     computerSelection = setComputerSelection();
-    console.log(` Round:${round}`);
-    console.log("you played: ",playerSelectionLowerCase);
-    console.log("The evil wizard played: ",computerSelection);
-    console.log(`${playerSelectionLowerCase} vs ${computerSelection}`);
-    console.log(roundMessage(setWinnerOfTheRound(playerSelectionLowerCase,computerSelection)));
-    console.log(`Scores | You:${roundsWon} | Evil wizard:${roundsLost}| Draws:${round - (roundsLost + roundsWon)}`);
+    const message = `Round: ${round}\n
+    You played: ${playerSelectionLowerCase}\n
+    The evil wizard played: ${computerSelection}\n
+    ${playerSelectionLowerCase} vs ${computerSelection}\n
+    ${roundMessage(setWinnerOfTheRound(playerSelectionLowerCase, computerSelection))}\n
+    Scores | You: ${roundsWon} | Evil wizard: ${roundsLost} | Draws: ${round - (roundsLost + roundsWon)}`;
+    window.alert(message);
+    console.log(message);
     round++;
 }
 
@@ -108,13 +110,13 @@ function startGame(){
         if(roundsWon == 3 || roundsLost == 3)break
     } while (round <= 5 );
     if(roundsWon === 3 || roundsWon > roundsLost){
-        console.log("Congratulations, mighty warrior! With your valiant efforts, you have vanquished the malevolent wizard and restored harmony to the world");
+        window.alert("Congratulations, mighty warrior! With your valiant efforts, you have vanquished the malevolent wizard and restored harmony to the world");
     }
     else if(roundsLost === 3 || roundsLost > roundsWon){
-        console.log("Though the battle may be lost, the spirit of a warrior is indomitable. Rise again, brave soul, for redemption awaits on the battlefield. Your resilience shall forge a path to victory!");
+        window.alert("Though the battle may be lost, the spirit of a warrior is indomitable. Rise again, brave soul, for redemption awaits on the battlefield. Your resilience shall forge a path to victory!");
     }
     else{
-        console.log("In the balance of fate, a draw is but a pause in the eternal struggle. Press onward, gallant challenger, for in the ebb and flow of conflict lies the promise of triumph. Let hope guide your blade in the battles yet to come!");
+        window.alert("In the balance of fate, a draw is but a pause in the eternal struggle. Press onward, gallant challenger, for in the ebb and flow of conflict lies the promise of triumph. Let hope guide your blade in the battles yet to come!");
         
     }
     const playAgain = window.confirm('Do you want to play again?');
@@ -132,8 +134,8 @@ function startGame(){
     console.log('Thank you for playing the game!')
 }
 
-console.log(story);
-startGame();
+window.alert(story);
+
 console.log("Is this the end?");
 console.log("Maybe if you refresh the page it won't be");
 
