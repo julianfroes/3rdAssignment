@@ -135,7 +135,7 @@ function startGame(){
 }
 
 window.alert(story);
-
+startGame();
 console.log("Is this the end?");
 console.log("Maybe if you refresh the page it won't be");
 
