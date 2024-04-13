@@ -61,7 +61,6 @@ function playRound(){
         else{
             playerSelection = window.prompt(`${'Write an option'}\n${'write a correct input'}\n${ displayOptions.join("\n")}`);
         }
-        console.log(playerSelection);
         if(playerSelection === null){
             leaveGame = window.confirm('Do you want to leave the battlefield and let the evil wizard win?')
             if(!leaveGame){
